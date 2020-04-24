@@ -2,4 +2,4 @@
 .RData
 .Rproj.user
 .rstudio
-data-volume
+config/data-volume
