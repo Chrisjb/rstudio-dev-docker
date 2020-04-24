@@ -1,0 +1,66 @@
+1587685653915:install.packages('glue')
+1587687141395:# script to test our API and db
+1587687141413:library(RPostgreSQL)
+1587687174417:con <- dbPool(
+1587687174429:drv = PostgreSQL(),
+1587687174439:host = 'db',
+1587687174445:dbname = 'dev',
+1587687174454:user = 'postgres',
+1587687174459:password = 'postgres'
+1587687174468:)
+1587687189941:con <- dbConnect(
+1587687189953:drv = PostgreSQL(),
+1587687189962:host = 'db',
+1587687189969:dbname = 'dev',
+1587687189977:user = 'postgres',
+1587687189984:password = 'postgres'
+1587687189992:)
+1587687202915:library(dplyr)
+1587687218784:library(DBI)
+1587687252960:dbSendQuery(con,"create table test;")
+1587687277011:dbSendQuery(con,"create table test")
+1587687280288:dbSendQuery(con,"create table 'test'")
+1587687310323:dbCreateTable(con, "iris", iris)
+1587687315275:tbl(con, 'iris')
+1587687323188:dbWriteTable(con, "iris", iris)
+1587687334054:dbSendQuery(con,"drop table iris")
+1587687335939:dbWriteTable(con, "iris", iris)
+1587687336480:tbl(con, 'iris')
+1587687389938:# test API
+1587687389952:library(httr)
+1587687418608:GET('http://localhost:5500/api/test?x=1&y=2')
+1587687446007:GET('localhost:5500/api/test?x=1&y=2')
+1587687492024:GET('https://covtrak.com/test')
+1587687500240:GET('https://covtrak.com/test') %>% content
+1587687562029:GET('api/test?x=1&y=2')
+1587687598159:GET('/api/test?x=1&y=2')
+1587687616041:GET('http://localhost:5500/api/test?x=1&y=2')
+1587687629628:GET('http://12.345.678.90:5500/api/test?x=1&y=2')
+1587687742075:GET('http://localhost:8000/api/test?x=1&y=2')
+1587687745903:GET('http://localhost:5500/api/test?x=1&y=2')
+1587687977919:library(httr)
+1587687977990:GET('http://localhost:5500/api/test?x=1&y=2')
+1587688054590:# test API
+1587688054599:library(httr)
+1587688055370:GET('http://localhost:5500/api/test?x=1&y=2')
+1587688137234:GET('/api/test?x=1&y=2')
+1587688150761:GET('http://localhost:5500/api/test?x=1&y=1')
+1587688197729:GET('http://127.0.0.1:5500/api/test?x=1&y=1')
+1587688202365:GET('http://127.0.0.1/api/test?x=1&y=1')
+1587688383602:# test API
+1587688383615:library(httr)
+1587688384352:GET('http://localhost:5500/api/test?x=1&y=2')
+1587688385192:GET('http://127.0.0.1:5500/api/test?x=1&y=1')
+1587688397334:GET('5500/api/test?x=1&y=1')
+1587688416353:GET('api:5500/api/test?x=1&y=1')
+1587688419417:GET('app:5500/api/test?x=1&y=1')
+1587688477410:GET('http://host.docker.internal:5500/api/test?x=1&y=1')
+1587688493689:req <- GET('http://host.docker.internal:5500/api/test?x=1&y=1')
+1587688502928:res <- content(req)
+1587688504123:res
+1587688529899:res <- content(req, flatten=TRUE)
+1587688530519:res
+1587688541710:res <- content(req, flatten=TRUE, simplifyVector = TRUE)
+1587688542195:res
+1587688553897:res <- content(req, simplifyVector = TRUE)
+1587688554180:res

@@ -1,0 +1,23 @@
+FROM trestletech/plumber
+MAINTAINER Docker User <docker@user.org>
+
+
+RUN R -e "install.packages(c('pool', 'DBI', 'RPostgreSQL', 'dplyr', 'stringr', 'utils', 'RCurl', 'jsonlite', 'httr'))"
+
+RUN echo 'deb http://deb.debian.org/debian bullseye main' > /etc/apt/sources.list
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    libcurl4-openssl-dev \
+    libgdal-dev \
+    libgeos-dev \
+    libproj-dev \
+    libudunits2-dev
+RUN R -e "install.packages('devtools')"
+RUN R -e "devtools::install_version('glue', version = '1.3.1', repos = 'http://cran.us.r-project.org')"
+RUN R -e "install.packages('sf')"
+RUN R -e "install.packages('RPostgreSQL')"
+COPY ./ ./app
+
+EXPOSE 8000
+
+ENTRYPOINT ["Rscript", "/app/serve-dev.R"]
