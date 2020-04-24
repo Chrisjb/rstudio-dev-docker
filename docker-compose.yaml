@@ -4,6 +4,8 @@ services:
     build:
       context: ./db
       dockerfile: Dockerfile.dev
+    volumes:
+      - ./data-volume:/var/lib/postgresql
     restart: always
     environment:
       # If you need to create multiple database you can add coma separated databases eg gis,data
