@@ -1,5 +1,8 @@
 # Rstudio with api and postgresql
-A contanerised Rstudio instance with a linked api and db.
+A containerised Rstudio instance with a linked api and db. An R studio instance will open with postgreSQL and a plumber API already set up and a persistent volume will be set up for postgres storage.
+
+![The Rstudio environment running in localhost](config/readme-files/app-screenshot.png)
+
 
 Rstudio and the plumber API use `nginx` reverse proxy which is accessible on port 5500.
 
@@ -11,26 +14,13 @@ http://localhost:5500/api/test?x=1&y=2
 
 The environment comes with PostgreSQL preconfigured with postgis with connection details in `test-script.R`. The postgres username and password each default to 'postgres' and can be changed in `docker-compose.yaml`.
 
-## default RStudio login
-username: rstudio
-password: dev
-
-These can be changed in the `docker-compose.yaml` file: 
-
-```r
-app:
-...
-...
-  environment:
-    PASSWORD: 'dev'
-```
 
 
 ## Running with docker
-
-1. `cd` to our project folder
-2. run `docker-compose up`
-3. when finished run `docker-compose down`
+1. clone the repo `git clone https://github.com/Chrisjb/rstudio-dev-docker.git` 
+2. `cd` to our project folder
+3. run `docker-compose up`
+4. when finished run `docker-compose down`
 
 
 If you see the error:

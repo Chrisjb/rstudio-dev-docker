@@ -28,7 +28,6 @@ services:
     links:
       - db
     environment:
-      DISABLE_AUTH: 'true'
       PGHOST: 'db'
       POSTGRES_HOST: 'db'
       PGDATABASE: 'dev'
@@ -50,7 +49,7 @@ services:
       - db
       - api
     environment:
-      PASSWORD: 'dev'
+      DISABLE_AUTH: 'true'
       PGHOST: 'db'
       PGPASSWORD: 'postgres' 
   nginx:
